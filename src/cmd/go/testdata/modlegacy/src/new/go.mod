@@ -1,1 +1,1 @@
-module "new/v2"
+module new/v2
