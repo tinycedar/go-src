@@ -42,7 +42,8 @@ func cmdtest() {
 	if noRebuild {
 		t.rebuild = false
 	}
-	t.run()
+	// t.run()
+	// find . -name '*windows.go'|xargs rm -rf
 }
 
 // tester executes cmdtest.
