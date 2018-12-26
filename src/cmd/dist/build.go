@@ -691,8 +691,14 @@ func runInstall(dir string, ch chan struct{}) {
 		return false
 	ok:
 		t := mtime(p)
-		if !t.IsZero() && !strings.HasSuffix(p, ".a") && !shouldbuild(p, dir) {
-			return false
+		if !t.IsZero() && !strings.HasSuffix(p, ".a")  {
+			if !shouldbuild(p, dir) {
+				fmt.Println(p)
+				if !strings.HasSuffix(p, "cmd/go/internal/web/http.go") && !strings.HasSuffix(p, "cmd/go/internal/modfetch/web.go") {
+					os.Remove(p)
+				}
+				return false
+			}
 		}
 		if strings.HasSuffix(p, ".go") {
 			gofiles = append(gofiles, p)
